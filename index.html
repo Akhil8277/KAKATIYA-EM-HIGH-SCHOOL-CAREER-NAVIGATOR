@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Navigator</title>
+
+<style>
+
+:root{
+--primary:#2c3e50;
+--accent:#3498db;
+--danger:#e74c3c;
+--bg:#f4f7f6;
+}
+
+body{
+font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+background:var(--bg);
+margin:0;
+padding:20px;
+}
+
+/* CONTAINER WITH BACKGROUND IMAGE */
+
+.container{
+max-width:1100px;
+margin:auto;
+background-image:linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),
+url("background.jpeg");
+background-size:cover;
+background-position:center;
+padding:40px;
+border-radius:12px;
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+color:var(--primary);
+text-align:center;
+border-bottom:3px solid var(--accent);
+padding-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#777;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:15px;
+}
+
+.btn{
+padding:18px;
+border:1px solid #ddd;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+background:white;
+color:var(--primary);
+text-align:left;
+transition: all 0.2s;
+}
+
+.btn:hover{
+background:var(--accent);
+color:white;
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.back-btn{
+background:#95a5a6;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:5px;
+margin-bottom:20px;
+cursor:pointer;
+font-weight: bold;
+}
+
+.back-btn:hover {
+background: #7f8c8d;
+}
+
+.content-section{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:#f9f9f9;
+padding:20px;
+border-radius:8px;
+border-left:5px solid var(--accent);
+margin-bottom:20px;
+}
+
+.section-label{
+font-weight:bold;
+color:var(--accent);
+font-size:12px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.exam-tag{
+display:inline-block;
+background:var(--danger);
+color:white;
+padding:4px 12px;
+border-radius:20px;
+font-size:13px;
+margin:4px;
+font-weight: bold;
+}
+
+/* IMAGE POPUP */
+
+#imagePopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:1000;
+backdrop-filter: blur(5px);
+}
+
+#imagePopup img{
+max-width:95%;
+max-height:90%;
+border-radius:10px;
+box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.close-btn{
+position:absolute;
+top:20px;
+right:30px;
+font-size:40px;
+color:white;
+cursor:pointer;
+transition: transform 0.2s;
+}
+
+.close-btn:hover {
+transform: scale(1.2);
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+padding:20px;
+font-size:14px;
+color:#777;
+border-top:1px solid #ddd;
+}
+
+footer span{
+font-weight:bold;
+color:var(--primary);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .btn {
+    padding: 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="mainHome" class="content-section active">
+
+<h1>KAKATIYA E M HIGH SCHOOL - NANDIGAMA</h1>
+<h2 style="text-align:center;">Career Navigator</h2>
+<p class="subtitle">Discover your strengths and explore career routes</p>
+
+<div class="grid">
+
+<button class="btn" onclick="showSection('strengthHome')">
+Discover Your Strengths
+</button>
+
+<button class="btn" onclick="showSection('careerHome')">
+Career Route
+</button>
+
+</div>
+</div>
+
+
+<!-- STRENGTH HOME -->
+
+<div id="strengthHome" class="content-section">
+
+<button class="back-btn" onclick="showSection('mainHome')">Back</button>
+
+<h1>Discover Your Strengths</h1>
+
+<div class="grid">
+
+<button class="btn" onclick="showSection('creative')">Creative</button>
+
+<button class="btn" onclick="showSection('people')">People-based</button>
+
+<button class="btn" onclick="openImage('problem_solving.jpg')">
+Problem Solving
+</button>
+
+<button class="btn" onclick="openImage('hands_on.jpg')">
+Hands-on Jobs
+</button>
+
+</div>
+</div>
+
+
+<!-- CREATIVE -->
+
+<div id="creative" class="content-section">
+
+<button class="back-btn" onclick="showSection('strengthHome')">Back</button>
+
+<h1>Creative Strengths</h1>
+
+<div class="grid">
+
+<button class="btn" onclick="openImage('Ideating.jpg')">
+Ideating
+</button>
+
+<button class="btn" onclick="openImage('creating.jpg')">
+Creating Something New
+</button>
+
+<button class="btn" onclick="openImage('beautiful.jpg')">
+Creating Something Beautiful
+</button>
+
+</div>
+</div>
+
+
+<!-- PEOPLE -->
+
+<div id="people" class="content-section">
+
+<button class="back-btn" onclick="showSection('strengthHome')">Back</button>
+
+<h1>People-Based Strengths</h1>
+
+<div class="grid">
+
+<button class="btn" onclick="openImage('influencing.jpg')">
+Influencing People
+</button>
+
+<button class="btn" onclick="openImage('helping.jpg')">
+Helping People
+</button>
+
+<button class="btn" onclick="openImage('working.jpg')">
+Working Alone
+</button>
+
+<button class="btn" onclick="openImage('thinking.jpg')">
+Thinking & Argumentation
+</button>
+
+</div>
+</div>
+
+
+<!-- CAREER ROUTES -->
+
+<div id="careerHome" class="content-section">
+
+<button class="back-btn" onclick="showSection('mainHome')">Back</button>
+
+<h1>Global Career & Education Directory</h1>
+
+<p class="subtitle">Empowering students to find the correct path</p>
+
+<div class="grid">
+
+<button class="btn" onclick="showRoute('r1')">🎨 Route 1: Design & Arts</button>
+<button class="btn" onclick="showRoute('r2')">⚙️ Route 2: Engineering & Technology</button>
+<button class="btn" onclick="showRoute('r3')">💼 Route 3: Commerce & Business</button>
+<button class="btn" onclick="showRoute('r4')">🩺 Route 4: Sciences & Medicine</button>
+<button class="btn" onclick="showRoute('r5')">⚖️ Route 5: Law & Governance</button>
+<button class="btn" onclick="showRoute('r6')">🛠️ Route 6: Vocational & Skill Training</button>
+<button class="btn" onclick="showRoute('r7')">🏫 Route 7: Education & Social Sciences</button>
+<button class="btn" onclick="showRoute('r8')">🏅 Route 8: Sports & Fitness</button>
+<button class="btn" onclick="showRoute('r9')">✈️ Route 9: Aviation & Marine</button>
+<button class="btn" onclick="showRoute('r10')">🌱 Route 10: Agriculture & Environmental</button>
+<button class="btn" onclick="showRoute('r11')">🏛️ Special Route: Architecture</button>
+
+</div>
+</div>
+
+
+<!-- ROUTE DETAILS -->
+
+<div id="details" class="content-section">
+
+<button class="back-btn" onclick="showSection('careerHome')">Back to Routes</button>
+
+<h2 id="routeTitle"></h2>
+<p id="routeDesc"></p>
+
+<div class="card">
+<span class="section-label">Specializations</span>
+<p id="pathList"></p>
+</div>
+
+<div class="card">
+<span class="section-label">Entrance Exams</span>
+<div id="examTags"></div>
+</div>
+
+<div class="card">
+<span class="section-label">Top Colleges</span>
+<p id="collegeList"></p>
+</div>
+
+<div class="card">
+<span class="section-label">Global Scope</span>
+<p id="globalScope"></p>
+</div>
+
+<div class="card">
+<span class="section-label">Careers</span>
+<p id="careerList"></p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- IMAGE POPUP -->
+
+<div id="imagePopup" onclick="closeImage()">
+<span class="close-btn">✖</span>
+<img id="popupImg">
+</div>
+
+<footer>
+<span>© 2026 KAKATIYA E M HIGH SCHOOL</span> All Rights Reserved. |
+Designed by AKHIL
+</footer>
+
+<script>
+
+function showSection(id){
+
+document.querySelectorAll('.content-section').forEach(s=>{
+s.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+
+}
+
+function openImage(src){
+document.getElementById("popupImg").src=src;
+document.getElementById("imagePopup").style.display="flex";
+}
+
+function closeImage(){
+document.getElementById("imagePopup").style.display="none";
+}
+
+const careerData={
+
+r1:{t:"Design & Arts",d:"Creative leadership merging aesthetic vision with technical execution.",
+p:"Jewellery Design, Fashion Design, Graphic Design, Animation/VFX, Interior Design, UI/UX Design, Industrial/Product Design, Fine Arts, Accessory Design",
+e:["UCEED","NID DAT","NIFT Entrance","CUET"],
+c:"NID (Ahmedabad), NIFT (Delhi/Mumbai), IIT Bombay (IDC), Pearl Academy",
+g:"Pursue M.Des (via CEED) or MFA. Top global hubs: Italy (Milan), UK (Royal College of Art), USA (RISD).",
+j:"Jewellery Brand Manager, UI Designer, Creative Director, Gemologist, Concept Artist"},
+
+r2:{t:"Engineering & Technology",d:"Scientific innovation across physical, digital, and agricultural infrastructures.",
+p:"Agricultural Engineering, Civil Engineering, Computer Science (AI/Data Science), Mechanical, Electrical, Aeronautical, Chemical, Biotechnology, Marine Engineering, Robotics",
+e:["JEE Main & Advanced","ICAR AIEEA (UG)","BITSAT","VITEEE","SRMJEEE"],
+c:"IITs, BITS Pilani, NITs, Punjab Agricultural University (PAU), TNAU (Coimbatore)",
+g:"M.Tech (via GATE) or MS abroad (via GRE). Huge demand in Germany (Auto/Mech), USA (Tech), and Israel (Agri-Tech).",
+j:"Irrigation Engineer, Data Scientist, Structural Engineer, Robotics Specialist, AI Researcher"},
+
+r3:{t:"Commerce & Business",d:"Management of wealth, corporate strategy, and global trade.",
+p:"Chartered Accountancy (CA), Investment Banking, Business Analytics, Company Secretary (CS), Actuarial Science, Marketing, HR, Supply Chain Management, FinTech, E-commerce Business",
+e:["IPMAT/JIPMAT","CUET","CA/CS/CMA Entrance"],
+c:"SRCC (Delhi), IIM Indore/Rohtak, St. Xavier's (Mumbai/Kolkata)",
+g:"MBA (via CAT/GMAT), CFA (Global Charter), or CPA (USA). Top hubs: London, New York, Singapore.",
+j:"Risk Analyst, Portfolio Manager, Auditor, CEO, Digital Marketing Head"},
+
+r4:{t:"Sciences & Medicine",d:"Clinical practice, healthcare technology, and biological research.",
+p:"MBBS (Surgery/Medicine), BDS (Dental), B.V.Sc (Veterinary), BPT (Physiotherapy), B.Pharm (Pharmacy), Nursing, Forensic Science, Genetics, Biotechnology, Nutrition & Dietetics",
+e:["NEET (UG)","IISER Aptitude Test (IAT)","CUET"],
+c:"AIIMS (Delhi), CMC Vellore, JIPMER, IISERs, AFMC Pune",
+g:"NEET PG for MD/MS. Abroad: USMLE (USA), PLAB (UK). Research careers in Switzerland/Germany.",
+j:"Surgeon, Research Scientist, Clinical Pharmacologist, Veterinarian, Hospital Admin"},
+
+r5:{t:"Law & Governance",d:"Justice systems, corporate compliance, and public administration.",
+p:"Corporate Law, Litigation, Judiciary, Civil Services (IAS/IPS/IFS), Legal Journalism, Intellectual Property (IP) Law, Policy Analysis, Mediation/ADR",
+e:["CLAT","AILET","LSAT-India"],
+c:"NLSIU (Bangalore), NALSAR (Hyderabad), Jindal Global Law School",
+g:"LLM (via CLAT PG) or specialized Master’s in Public Policy. Career scope in UN, International Courts (The Hague).",
+j:"Supreme Court Advocate, Judge, Legal Consultant to MNCs, Diplomat"},
+
+r6:{t:"Vocational & Skill Training",d:"Industry-ready practical expertise and specialized technical trades.",
+p:"Hotel Management, Culinary Arts, Digital Marketing, Drone Operation, Electrician/Welding, Beauty & Wellness, Event Management, Data Entry Operator",
+e:["NCHM JEE","State-level ITI/Polytechnic CETs","B.Voc Entrance"],
+c:"IHM Pusa, TISS (Mumbai), DSEU (Delhi)",
+g:"High immigration scope for skilled trades in Canada, Australia, and New Zealand.",
+j:"Head Chef, Hospitality Manager, Technical Supervisor, Entrepreneur"},
+
+r7:{t:"Education & Social Sciences",d:"Human-centric study of society, psychology, and pedagogy.",
+p:"Psychology (Clinical/Counselling), Sociology, Political Science, Economics, B.Ed (Teaching), Archaeology, Social Work (MSW), International Relations",
+e:["CUET","TISS-BAT"],
+c:"TISS (Mumbai), Lady Shri Ram (Delhi), St. Stephen’s, Loyola (Chennai)",
+g:"MA/PhD. Scope in global NGOs (WHO, UNICEF) and academia in USA/Europe.",
+j:"Clinical Psychologist, Professor, NGO Director, Policy Researcher"},
+
+r8:{t:"Sports & Fitness",d:"Athletic excellence, performance science, and sports management.",
+p:"Sports Management, Sports Science, Sports Physiotherapy, Professional Coaching, Yoga Instruction, Sports Data Analytics, Fitness Training, Sports Journalism",
+e:["NSU Entrance","Merit + Trials"],
+c:"LNIPE (Gwalior), IISM (Mumbai), NSNIS (Patiala)",
+g:"Sports Management MBAs in Spain/UK. Fitness/Rehab roles in professional leagues (NBA, EPL).",
+j:"Sports Agent, Performance Analyst, Team Coach, Personal Trainer to Athletes"},
+
+r9:{t:"Aviation & Marine",d:"Operational mastery of the global transportation and logistics network.",
+p:"Commercial Pilot (CPL), Merchant Navy (Nautical Science), Marine Engineering, Cabin Crew/Air Hostess, Air Traffic Control (ATC), Airport Management, Aircraft Maintenance (AME)",
+e:["IGRUA Entrance","IMU-CET","AME CET"],
+c:"IGRUA (Rae Bareli), Indian Maritime University (Chennai/Kolkata), Bombay Flying Club",
+g:"Direct global recruitment by international airlines and shipping giants (Maersk).",
+j:"Captain, Chief Engineer, Flight Instructor, Air Traffic Controller"},
+
+r10:{t:"Agriculture & Environmental",d:"Sustainability, food security, and ecological conservation.",
+p:"Agronomy, Horticulture, Forestry, Environmental Science, Soil Science, Agri-Business Management, Plantation Management, Wildlife Conservation",
+e:["ICAR AIEEA (UG)","CUET"],
+c:"IARI (Delhi), PAU (Ludhiana), GB Pant University",
+g:"M.Sc/PhD. Specialized Ag-Tech research in Israel and environmental policy in Scandinavia.",
+j:"Agricultural Officer (Government), Sustainability Consultant, Forest Officer (IFS), Farm Manager"},
+
+r11:{t:"Architecture",d:"The 'Mother of Arts,' combining creative design with structural engineering to shape the built environment.",
+p:"Building Architecture, Urban Design, Landscape Architecture, Sustainable/Green Architecture, Interior Architecture, Heritage Conservation, Naval Architecture, Industrial Design",
+e:["NATA","JEE Main Paper 2","AAT"],
+c:"SPA (Delhi, Bhopal, Vijayawada), IIT Roorkee, IIT Kharagpur, Sir J.J. College of Architecture (Mumbai), CEPT University (Ahmedabad), Vishwakarma University (Pune)",
+g:"M.Arch, M.Plan, Construction Management. Global: AA School (UK), MIT (USA), TU Delft (Netherlands).",
+j:"Licensed Architect (huge demand in USA, UK, Canada, Australia, UAE). Work with firms like Foster + Partners or Gensler."}
+
+};
+
+function showRoute(key){
+
+const d=careerData[key];
+if(!d) return;
+
+showSection('details');
+
+document.getElementById('routeTitle').innerText=d.t;
+document.getElementById('routeDesc').innerText=d.d;
+document.getElementById('pathList').innerText=d.p;
+document.getElementById('collegeList').innerText=d.c;
+document.getElementById('globalScope').innerText=d.g;
+document.getElementById('careerList').innerText=d.j;
+
+let exams="";
+d.e.forEach(x=>{
+exams+=`<span class="exam-tag">${x}</span>`;
+});
+
+document.getElementById('examTags').innerHTML=exams;
+
+}
+
+</script>
+
+</body>
+</html>
